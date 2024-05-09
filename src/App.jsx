@@ -1,18 +1,16 @@
-import {
-  Navigate,
-  RouterProvider,
-  createBrowserRouter,
-} from 'react-router-dom';
+import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom'
 
-import Events from './components/Events/Events.jsx';
-import EventDetails from './components/Events/EventDetails.jsx';
-import NewEvent from './components/Events/NewEvent.jsx';
-import EditEvent from './components/Events/EditEvent.jsx';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+
+import Events from './components/Events/Events.jsx'
+import EventDetails from './components/Events/EventDetails.jsx'
+import NewEvent from './components/Events/NewEvent.jsx'
+import EditEvent from './components/Events/EditEvent.jsx'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Navigate to="/events" />,
+    element: <Navigate to='/events' />,
   },
   {
     path: '/events',
@@ -35,10 +33,17 @@ const router = createBrowserRouter([
       },
     ],
   },
-]);
+])
+
+// Create a client
+const queryClient = new QueryClient()
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
+  )
 }
 
-export default App;
+export default App
