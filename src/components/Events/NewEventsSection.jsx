@@ -10,6 +10,20 @@ export default function NewEventsSection() {
   const { isLoading, error, data } = useQuery({
     queryKey: ['events'],
     queryFn: fetchEvents,
+    /*
+      staleTime: controls after which time react query
+      will send such a behind the scenes request to get updated data
+      if it found data in your cache.
+      default: 0,
+      https://www.udemy.com/course/react-the-complete-guide-incl-redux/learn/lecture/39499428#questions/19985512
+    */
+    // staleTime: 5000,
+    /* 
+      gcTime(Garbage Collection Time): this controls how long the data
+      and the cache will be kept around.
+      default: 60000 * 5, 5min
+    */
+    // gcTime: 1000,
   })
   let content
 
@@ -18,7 +32,6 @@ export default function NewEventsSection() {
   }
 
   if (error) {
-    console.log(error)
     content = (
       <ErrorBlock
         title={error.code || 'An error occurred'}

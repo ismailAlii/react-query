@@ -6,6 +6,7 @@ import Events from './components/Events/Events.jsx'
 import EventDetails from './components/Events/EventDetails.jsx'
 import NewEvent from './components/Events/NewEvent.jsx'
 import EditEvent from './components/Events/EditEvent.jsx'
+import { queryClient } from './util/http.js'
 
 const router = createBrowserRouter([
   {
@@ -34,9 +35,6 @@ const router = createBrowserRouter([
     ],
   },
 ])
-
-// Create a client
-const queryClient = new QueryClient()
 
 function App() {
   return (
